@@ -1,0 +1,1758 @@
+<div id="stcvr" data-email="info@strongtownschicago.org">
+    <script>
+    (function() {
+        var r = document.getElementById('stcvr');
+        if (r) {
+            r.classList.add('stcvr-js');
+        }
+    })();
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Raleway:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+    #stcvr {
+        --stcvr-navy: #0c2240;
+        --stcvr-navy-deep: #06111f;
+        --stcvr-navy-mid: #163660;
+        --stcvr-sky: #c5dffc;
+        --stcvr-gold: #ffa800;
+        --stcvr-coral: #fd6262;
+        --stcvr-coral-text: #c04040;
+        --stcvr-cream: #f5eed8;
+        --stcvr-paper: #fffdf7;
+        --stcvr-head: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --stcvr-body: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        --stcvr-pad: clamp(16px, 3vw, 36px);
+        padding: var(--stcvr-pad) var(--stcvr-pad) clamp(26px, 4vw, 48px);
+        background: var(--stcvr-cream);
+        color: var(--stcvr-navy);
+        font-family: var(--stcvr-body);
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 1.6;
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }/* Reset so Squarespace site styles don't leak into this block */
+
+    #stcvr *, #stcvr *::before, #stcvr *::after {
+        box-sizing: border-box;
+    }
+
+    #stcvr h1, #stcvr h2, #stcvr h3, #stcvr h4, #stcvr p, #stcvr ul, #stcvr ol, #stcvr li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        max-width: none;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        font-style: normal;
+        line-height: inherit;
+        color: inherit;
+        letter-spacing: normal;
+        text-transform: none;
+        text-align: left;
+        text-indent: 0;
+        white-space: normal;
+    }
+
+    #stcvr ul, #stcvr ol {
+        list-style: none;
+    }
+
+    #stcvr li::before, #stcvr li::after {
+        content: none;
+    }
+
+    #stcvr span, #stcvr a, #stcvr button {
+        letter-spacing: inherit;
+        text-transform: inherit;
+    }
+
+    #stcvr a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 0;
+        background-image: none;
+    }
+
+    #stcvr strong {
+        font-weight: 700;
+        color: inherit;
+    }
+
+    #stcvr svg {
+        display: block;
+        flex: 0 0 auto;
+        overflow: visible;
+    }
+
+    #stcvr svg, #stcvr svg * {
+        fill: none;
+        stroke: currentColor;
+    }
+
+    #stcvr [hidden] {
+        display: none !important;
+    }
+
+    #stcvr .stcvr-sr {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    #stcvr a:focus-visible, #stcvr button:focus-visible {
+        outline: 3px solid var(--stcvr-coral);
+        outline-offset: 3px;
+    }/* Hero */
+
+    #stcvr .stcvr-hero {
+        position: relative;
+        overflow: hidden;
+        background: var(--stcvr-navy);
+        color: var(--stcvr-cream);
+        box-shadow: 8px 8px 0 var(--stcvr-navy-deep);
+        padding: clamp(46px, 7vw, 80px) clamp(22px, 5vw, 64px) clamp(34px, 5vw, 58px);
+    }
+
+    #stcvr .stcvr-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+        background-image:
+        linear-gradient(rgba(197, 223, 252, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(197, 223, 252, 0.07) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    #stcvr .stcvr-stripes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        z-index: 1;
+        background: linear-gradient(90deg, var(--stcvr-gold) 0 25%, var(--stcvr-coral) 25% 50%, var(--stcvr-sky) 50% 75%, var(--stcvr-navy-mid) 75% 100%);
+    }
+
+    #stcvr .stcvr-hero-inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    #stcvr p.stcvr-eyebrow {
+        margin-bottom: 16px;
+        font-family: var(--stcvr-head);
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 1.4;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--stcvr-gold);
+    }
+
+    #stcvr h1.stcvr-title {
+        max-width: 820px;
+        font-family: var(--stcvr-head);
+        font-weight: 900;
+        font-size: clamp(34px, 5.6vw, 62px);
+        line-height: 1.04;
+        letter-spacing: -1.5px;
+        color: var(--stcvr-cream);
+    }
+
+    #stcvr .stcvr-title .stcvr-accent {
+        color: var(--stcvr-gold);
+    }
+
+    #stcvr .stcvr-divider {
+        width: 84px;
+        height: 5px;
+        margin: 24px 0 22px;
+        background: linear-gradient(90deg, var(--stcvr-gold), var(--stcvr-coral));
+    }
+
+    #stcvr p.stcvr-lede {
+        max-width: 660px;
+        font-size: clamp(16px, 1.8vw, 19px);
+        line-height: 1.65;
+        color: var(--stcvr-sky);
+    }
+
+    #stcvr p.stcvr-lede + p.stcvr-lede {
+        margin-top: 14px;
+    }/* Section headings */
+
+    #stcvr .stcvr-section {
+        margin-top: clamp(48px, 7vw, 84px);
+    }
+
+    #stcvr h2.stcvr-h2 {
+        font-family: var(--stcvr-head);
+        font-weight: 900;
+        font-size: clamp(28px, 3.8vw, 42px);
+        line-height: 1.12;
+        letter-spacing: -0.8px;
+        color: var(--stcvr-navy);
+    }
+
+    #stcvr .stcvr-mark {
+        padding: 0 0.12em;
+        background: linear-gradient(transparent 58%, #ffc34d 58%, #ffc34d 90%, transparent 90%);
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+    }/* Hint line and "open all" control. Hidden when JS is off, since cards are already open then. */
+
+    #stcvr .stcvr-tools {
+        display: none;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+        margin-top: 20px;
+    }
+
+    #stcvr.stcvr-js .stcvr-tools {
+        display: flex;
+    }
+
+    #stcvr p.stcvr-hint {
+        font-size: 16.5px;
+        line-height: 1.5;
+        color: var(--stcvr-navy-mid);
+    }
+
+    #stcvr button.stcvr-expand {
+        -webkit-appearance: none;
+        appearance: none;
+        width: auto;
+        height: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 9px 15px;
+        border-radius: 0;
+        cursor: pointer;
+        background: var(--stcvr-paper);
+        color: var(--stcvr-navy);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 3px 3px 0 var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 14px;
+        line-height: 1.2;
+        letter-spacing: 0.4px;
+        text-transform: none;
+    }
+
+    #stcvr button.stcvr-expand:hover {
+        background: var(--stcvr-cream);
+    }/* Colour bands: one per group of roles, run edge to edge inside the block */
+
+    #stcvr .stcvr-bands {
+        margin: 26px calc(-1 * var(--stcvr-pad)) 0;
+    }
+
+    #stcvr .stcvr-catsec {
+        --stcvr-band: var(--stcvr-cream);
+        --stcvr-ink: var(--stcvr-navy);
+        --stcvr-ink-soft: var(--stcvr-navy-mid);
+        --stcvr-dot: var(--stcvr-gold);
+        --stcvr-tape: var(--stcvr-gold);
+        --stcvr-shade: var(--stcvr-navy);
+        position: relative;
+        padding: clamp(30px, 4vw, 44px) var(--stcvr-pad) clamp(36px, 4.6vw, 52px);
+        background: var(--stcvr-band);
+        color: var(--stcvr-ink);
+    }
+
+    #stcvr .stcvr-catsec.is-gold {
+        --stcvr-band: #fbeccb;
+        --stcvr-dot: var(--stcvr-gold);
+        --stcvr-tape: var(--stcvr-gold);
+    }
+
+    #stcvr .stcvr-catsec.is-coral {
+        --stcvr-band: #fde4de;
+        --stcvr-dot: var(--stcvr-coral);
+        --stcvr-tape: var(--stcvr-coral);
+    }
+
+    #stcvr .stcvr-catsec.is-sky {
+        --stcvr-band: #e8f2ff;
+        --stcvr-dot: var(--stcvr-sky);
+        --stcvr-tape: var(--stcvr-sky);
+    }
+
+    #stcvr .stcvr-catsec.is-navy {
+        --stcvr-band: var(--stcvr-navy);
+        --stcvr-ink: var(--stcvr-cream);
+        --stcvr-ink-soft: var(--stcvr-sky);
+        --stcvr-dot: var(--stcvr-gold);
+        --stcvr-tape: var(--stcvr-cream);
+        --stcvr-shade: #03080f;
+    }
+
+    #stcvr .stcvr-catsec.is-navy::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+        linear-gradient(rgba(197, 223, 252, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(197, 223, 252, 0.08) 1px, transparent 1px);
+        background-size: 46px 46px;
+    }
+
+    #stcvr .stcvr-catsec > * {
+        position: relative;
+        z-index: 1;
+    }/* Category headings */
+
+    #stcvr .stcvr-cat {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 2px 16px;
+        padding-bottom: 12px;
+        border-bottom: 3px solid var(--stcvr-ink);
+    }
+
+    #stcvr h3.stcvr-cat-title {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-family: var(--stcvr-head);
+        font-weight: 900;
+        font-size: clamp(21px, 2.3vw, 26px);
+        line-height: 1.2;
+        letter-spacing: -0.4px;
+        color: var(--stcvr-ink);
+    }
+
+    #stcvr .stcvr-cat-dot {
+        flex: 0 0 auto;
+        width: 15px;
+        height: 15px;
+        background: var(--stcvr-dot);
+        border: 2.5px solid var(--stcvr-ink);
+        transform: rotate(45deg);
+    }
+
+    #stcvr p.stcvr-cat-sub {
+        font-size: 16px;
+        line-height: 1.5;
+        font-style: italic;
+        color: var(--stcvr-ink-soft);
+    }/* Role cards */
+
+    #stcvr .stcvr-cat + .stcvr-grid {
+        margin-top: 26px;
+    }
+
+    #stcvr .stcvr-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 288px), 1fr));
+        align-items: start;
+        gap: clamp(34px, 3.6vw, 42px) clamp(20px, 2.2vw, 30px);
+        margin-top: 30px;
+    }
+
+    #stcvr .stcvr-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: var(--stcvr-paper);
+        color: var(--stcvr-navy);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 6px 6px 0 var(--stcvr-shade, var(--stcvr-navy));
+        padding: 34px clamp(20px, 3vw, 30px) clamp(22px, 3vw, 28px);
+        scroll-margin-top: 120px;
+    }
+
+    #stcvr .stcvr-card::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 22px;
+        width: 112px;
+        height: 28px;
+        background: repeating-linear-gradient(-45deg, rgba(12, 34, 64, 0.13) 0 4px, transparent 4px 12px), var(--stcvr-tape);
+        border-top: 2px solid rgba(12, 34, 64, 0.28);
+        border-bottom: 2px solid rgba(12, 34, 64, 0.28);
+        transform: rotate(-3deg);
+    }
+
+    #stcvr h4.stcvr-role {
+        font-family: var(--stcvr-head);
+        font-weight: 900;
+        font-size: clamp(23px, 2.4vw, 28px);
+        line-height: 1.12;
+        letter-spacing: -0.5px;
+        color: var(--stcvr-navy);
+    }
+
+    #stcvr .stcvr-role-sub {
+        display: block;
+        margin-top: 6px;
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 12.5px;
+        line-height: 1.3;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--stcvr-coral-text);
+    }
+
+    #stcvr p.stcvr-hook {
+        margin-top: 10px;
+        font-size: 17px;
+        line-height: 1.5;
+        font-style: italic;
+        color: var(--stcvr-navy-mid);
+    }
+
+    #stcvr p.stcvr-time {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 18px;
+        padding: 9px 12px;
+        background: var(--stcvr-sky);
+        border: 2px solid var(--stcvr-navy);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.45;
+    }
+
+    #stcvr p.stcvr-time svg {
+        width: 19px;
+        height: 19px;
+        margin-top: 1px;
+    }
+
+    #stcvr p.stcvr-label {
+        margin-top: 22px;
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 1.3;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--stcvr-coral-text);
+    }
+
+    #stcvr p.stcvr-text {
+        margin-top: 6px;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    #stcvr ul.stcvr-list {
+        margin-top: 9px;
+    }
+
+    #stcvr ul.stcvr-list li {
+        position: relative;
+        padding-left: 26px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    #stcvr ul.stcvr-list li + li {
+        margin-top: 8px;
+    }
+
+    #stcvr ul.stcvr-list li::before {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 7px;
+        width: 10px;
+        height: 10px;
+        background: var(--stcvr-tape);
+        border: 2px solid var(--stcvr-navy);
+        transform: rotate(45deg);
+    }
+
+    #stcvr p.stcvr-exp {
+        margin-top: 22px;
+        padding: 11px 14px;
+        background: #fbf2d7;
+        border-left: 5px solid var(--stcvr-gold);
+        font-size: 15.5px;
+        line-height: 1.55;
+    }
+
+    #stcvr p.stcvr-exp strong {
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+    }
+
+    #stcvr .stcvr-details {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }/* Cards start collapsed. Without JS they render open, so nothing is ever hidden. */
+
+    #stcvr.stcvr-js .stcvr-card:not(.is-open) .stcvr-details {
+        display: none;
+    }
+
+    #stcvr.stcvr-js button.stcvr-toggle {
+        display: flex;
+    }
+
+    #stcvr button.stcvr-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        margin: 16px 0 0;
+        padding: 12px 16px;
+        border-radius: 0;
+        cursor: pointer;
+        background: var(--stcvr-paper);
+        color: var(--stcvr-navy);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 3px 3px 0 var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 15px;
+        line-height: 1.2;
+        letter-spacing: 0.3px;
+        text-transform: none;
+    }
+
+    #stcvr button.stcvr-toggle svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.2s ease;
+    }
+
+    #stcvr .stcvr-card.is-open button.stcvr-toggle svg {
+        transform: rotate(180deg);
+    }
+
+    #stcvr .stcvr-card-foot {
+        margin-top: auto;
+        padding-top: 26px;
+    }
+
+    #stcvr a.stcvr-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 14px 18px;
+        background: var(--stcvr-gold);
+        color: var(--stcvr-navy);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 4px 4px 0 var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 1.2;
+        letter-spacing: 0.3px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    #stcvr a.stcvr-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    #stcvr a.stcvr-btn:hover {
+        background: #ffb935;
+        color: var(--stcvr-navy);
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--stcvr-navy);
+    }
+
+    #stcvr a.stcvr-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--stcvr-navy);
+    }/* Panels */
+
+    #stcvr .stcvr-panel {
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 6px 6px 0 var(--stcvr-navy);
+        padding: clamp(26px, 4vw, 46px);
+        scroll-margin-top: 120px;
+    }
+
+    #stcvr .stcvr-reply {
+        background: var(--stcvr-sky);
+    }
+
+    #stcvr ol.stcvr-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+        gap: 22px 30px;
+        margin-top: 28px;
+    }
+
+    #stcvr li.stcvr-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    #stcvr .stcvr-step-num {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--stcvr-navy);
+        color: var(--stcvr-gold);
+        box-shadow: 3px 3px 0 rgba(12, 34, 64, 0.28);
+        font-family: var(--stcvr-head);
+        font-weight: 900;
+        font-size: 21px;
+        line-height: 1;
+    }
+
+    #stcvr li.stcvr-step p {
+        padding-top: 3px;
+        font-size: 16.5px;
+        line-height: 1.55;
+    }
+
+    #stcvr .stcvr-fallback {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 14px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px dashed rgba(12, 34, 64, 0.4);
+        font-size: 15.5px;
+        line-height: 1.55;
+    }
+
+    #stcvr .stcvr-fallback a {
+        font-weight: 700;
+        color: var(--stcvr-navy);
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+    }
+
+    #stcvr button.stcvr-copy {
+        -webkit-appearance: none;
+        appearance: none;
+        width: auto;
+        height: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 7px 13px;
+        border-radius: 0;
+        cursor: pointer;
+        background: var(--stcvr-paper);
+        color: var(--stcvr-navy);
+        border: 2px solid var(--stcvr-navy);
+        box-shadow: 2px 2px 0 var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 13px;
+        line-height: 1.2;
+        letter-spacing: 0.4px;
+        text-transform: none;
+    }
+
+    #stcvr button.stcvr-copy:hover {
+        background: var(--stcvr-cream);
+    }
+
+    #stcvr .stcvr-more {
+        background: var(--stcvr-gold);
+    }
+
+    #stcvr .stcvr-more a:focus-visible {
+        outline-color: var(--stcvr-navy);
+    }
+
+    #stcvr p.stcvr-sub {
+        margin-top: 10px;
+        font-size: 17px;
+        line-height: 1.55;
+    }
+
+    #stcvr ul.stcvr-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+        gap: 18px;
+        margin-top: 24px;
+    }
+
+    #stcvr a.stcvr-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 100%;
+        padding: 15px 16px;
+        background: var(--stcvr-paper);
+        color: var(--stcvr-navy);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 4px 4px 0 var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 1.3;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    #stcvr a.stcvr-link:hover {
+        background: var(--stcvr-cream);
+        color: var(--stcvr-navy);
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--stcvr-navy);
+    }
+
+    #stcvr a.stcvr-link svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    #stcvr .stcvr-arrow {
+        margin-left: auto;
+        padding-left: 6px;
+        font-size: 20px;
+        line-height: 1;
+    }/* Shown only if the inbox address hasn't been set */
+
+    #stcvr p.stcvr-setup {
+        margin-bottom: 20px;
+        padding: 12px 16px;
+        background: var(--stcvr-coral);
+        color: var(--stcvr-navy);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 4px 4px 0 var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        font-size: 15px;
+        line-height: 1.45;
+    }/* Phones: a shorter hero and tighter spacing */
+
+    @media (max-width: 700px) {
+        #stcvr {
+            font-size: 16px;
+        }
+
+        #stcvr .stcvr-hero {
+            padding: 40px 20px 30px;
+            box-shadow: 5px 5px 0 var(--stcvr-navy-deep);
+        }
+
+        #stcvr .stcvr-divider {
+            margin: 18px 0 16px;
+        }
+
+        #stcvr p.stcvr-eyebrow {
+            letter-spacing: 3px;
+        }
+
+        #stcvr .stcvr-section {
+            margin-top: 44px;
+        }
+
+        #stcvr .stcvr-bands {
+            margin-top: 22px;
+        }
+
+        #stcvr .stcvr-catsec {
+            padding: 26px var(--stcvr-pad) 32px;
+        }
+
+        #stcvr .stcvr-cat + .stcvr-grid {
+            margin-top: 22px;
+        }
+
+        #stcvr .stcvr-grid {
+            row-gap: 30px;
+        }
+
+        #stcvr .stcvr-card {
+            padding-top: 30px;
+        }
+
+        #stcvr .stcvr-card {
+            box-shadow: 4px 4px 0 var(--stcvr-shade, var(--stcvr-navy));
+        }
+
+        #stcvr .stcvr-panel {
+            box-shadow: 4px 4px 0 var(--stcvr-navy);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #stcvr a, #stcvr button, #stcvr button svg {
+            transition: none !important;
+        }
+
+        #stcvr a:hover, #stcvr a:active {
+            transform: none !important;
+        }
+    }
+    </style>
+
+    <!-- ============================== HERO ============================== -->
+    <div class="stcvr-hero">
+        <div class="stcvr-stripes" aria-hidden="true"></div>
+        <div class="stcvr-hero-inner">
+            <p class="stcvr-eyebrow">
+                <span aria-hidden="true">&#9733; </span>
+                Volunteer roles
+                <span aria-hidden="true"> &#9733;</span>
+            </p>
+            <h1 class="stcvr-title">
+                Put your skills to work for a 
+                <span class="stcvr-accent">stronger Chicago</span>
+            </h1>
+            <div class="stcvr-divider" aria-hidden="true"></div>
+            <p class="stcvr-lede">Strong Towns Chicago is run by volunteers. Everything we do, from testifying at City Council hearings to posting on Instagram, happens because people give their time.</p>
+            <p class="stcvr-lede">Right now twelve roles are open, grouped into four kinds of work. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We'll follow up to talk it through and make sure it's a good fit on both sides.</p>
+        </div>
+    </div>
+
+    <!-- ============================== ROLES ============================== -->
+    <!-- Each group of roles sits in its own colour band. Cards start collapsed: everything
+            inside stcvr-details opens with the "See details" button. -->
+    <div class="stcvr-section" role="region" aria-labelledby="stcvr-roles-title">
+        <h2 class="stcvr-h2" id="stcvr-roles-title">
+            <span class="stcvr-mark">Where you can help</span>
+        </h2>
+        <div class="stcvr-tools">
+            <p class="stcvr-hint">Open a role to see what it involves and how to reach us.</p>
+            <button type="button" class="stcvr-expand" data-stcvr-expand>Open all roles</button>
+        </div>
+
+        <div class="stcvr-bands">
+
+            <!-- GROUP: Design and media -->
+            <div class="stcvr-catsec is-gold">
+                <div class="stcvr-cat">
+                    <h3 class="stcvr-cat-title">
+                        <span class="stcvr-cat-dot" aria-hidden="true"></span>
+                        Design and media
+                    </h3>
+                    <p class="stcvr-cat-sub">Make the things people see and watch.</p>
+                </div>
+                <div class="stcvr-grid">
+
+                    <!-- ROLE 1: Graphic Designer -->
+                    <div class="stcvr-card" id="stcvr-designer">
+                        <h4 class="stcvr-role">
+                            Graphic Designer 
+                            <span class="stcvr-role-sub">Canva and more</span>
+                        </h4>
+                        <p class="stcvr-hook">Turn rough ideas into graphics people stop to read.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                About 2 to 4 hours a week. Remote, on your own schedule.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-designer-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Graphic Designer</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-designer-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Design Instagram posts, carousels, event flyers, and handouts using our colors and fonts. Most requests start as a rough draft or a few lines of text.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Are comfortable in Canva, Adobe, Figma, or a similar tool</li>
+                                <li>Can take a crowded idea and make it simple to read</li>
+                                <li>Can usually turn a request around in a few days</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Anything you've designed for a job, a class, a club, or yourself. A few examples are plenty.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Graphic Designer" data-questions="Something about Chicago I'd like to see change: | Links to a few things I've designed: | Hours per week I can realistically give:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 2: Short-Form Video Creator -->
+                    <div class="stcvr-card" id="stcvr-video">
+                        <h4 class="stcvr-role">Short-Form Video Creator</h4>
+                        <p class="stcvr-hook">Make short videos that show people how their city works.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                Flexible. A typical video takes a few hours from filming to posting.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-video-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Short-Form Video Creator</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-video-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Film and edit videos for Instagram Reels, TikTok, and YouTube Shorts. Think street interviews, quick explainers, and event recaps.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Have made short videos before</li>
+                                <li>Can edit on your phone or computer, in whatever app you like</li>
+                                <li>Are comfortable filming out in public</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Videos for your own account, even ones shot on a phone. We have a shared mic and tripod kit you can borrow.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Short-Form Video Creator" data-questions="A Chicago street, place, or issue I'd want to make a video about: | Links to a video or two I've made (personal accounts count): | Time I could give in a typical month:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 3: Photographer and Videographer -->
+                    <div class="stcvr-card" id="stcvr-photo">
+                        <h4 class="stcvr-role">
+                            Photographer and Videographer 
+                            <span class="stcvr-role-sub">Events and b-roll</span>
+                        </h4>
+                        <p class="stcvr-hook">Build a library of our own photos and footage of Chicago.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                Flexible, tied to events. A typical event is 2 to 3 hours plus editing. In person.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-photo-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Photographer and Videographer</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-photo-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Photograph our events, meetings, and walks, and shoot footage of the streets and buildings we talk about. Do a light edit and hand off clean files the rest of the team can use. Our short-form video creator turns those clips into finished posts, so you can stay behind the camera.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Shoot on whatever you have, a camera or a recent phone</li>
+                                <li>Can handle a basic edit: crop, color, and export at the right size</li>
+                                <li>Can get to events around the city, mostly evenings and weekends</li>
+                                <li>Are comfortable asking people whether it is okay to photograph them</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Photos from a trip, a friend&#8217;s wedding, a school paper, or your own account. Your eye matters more than your gear.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Photographer and Videographer" data-questions="Something about Chicago I'd like to see change: | Links to photos or video I've shot: | Kinds of events I could get to, and how often:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- GROUP: Writing and social -->
+            <div class="stcvr-catsec is-coral">
+                <div class="stcvr-cat">
+                    <h3 class="stcvr-cat-title">
+                        <span class="stcvr-cat-dot" aria-hidden="true"></span>
+                        Writing and social
+                    </h3>
+                    <p class="stcvr-cat-sub">Put what we are doing into words people read.</p>
+                </div>
+                <div class="stcvr-grid">
+
+                    <!-- ROLE 4: Social Media Manager -->
+                    <div class="stcvr-card" id="stcvr-social">
+                        <h4 class="stcvr-role">Social Media Manager</h4>
+                        <p class="stcvr-hook">Keep our feeds active, consistent, and easy to follow.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                About 3 to 5 hours a week. Remote.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-social-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Social Media Manager</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-social-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Plan and schedule posts across Instagram, Bluesky, and our other channels. Write captions, keep up with comments and messages, and work with the volunteers who make our graphics and videos.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Know what makes people stop scrolling</li>
+                                <li>Write short, clear captions quickly</li>
+                                <li>Can keep a regular posting schedule</li>
+                                <li>Can stay calm when people argue in the comments (city policy brings out strong opinions)</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Running a personal account, a club's page, or a small business feed. We'll help you get up to speed on the policy side.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Social Media Manager" data-questions="Something about Chicago I'd like to see change: | Links to accounts I've run or posts I'm proud of (personal accounts count): | Hours per week I can realistically give:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 5: Substack Editor -->
+                    <div class="stcvr-card" id="stcvr-substack">
+                        <h4 class="stcvr-role">
+                            Substack Editor 
+                            <span class="stcvr-role-sub">Newsletter and posts</span>
+                        </h4>
+                        <p class="stcvr-hook">Turn what we are working on into a newsletter people read to the end.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                About 3 to 5 hours a week, depending on how often we publish. Remote.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-substack-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Substack Editor</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-substack-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Plan and publish our Substack. Edit drafts from other volunteers, write a piece yourself now and then, hold a regular publishing schedule, and keep every post clear to someone who does not follow city politics.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Can edit someone else's writing without flattening their voice</li>
+                                <li>Write in plain language and cut jargon when you see it</li>
+                                <li>Can hold a publishing schedule, even a modest one</li>
+                                <li>Check claims and link to the source</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    A newsletter, a blog, a zine, a school paper, or a work update nobody dreaded reading.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Substack Editor" data-questions="Something about Chicago I'd like to see change: | Links to writing or editing I've done: | How often I think we should publish, and hours per week I can give:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 6: Spanish-Language Outreach -->
+                    <div class="stcvr-card" id="stcvr-spanish">
+                        <h4 class="stcvr-role">
+                            Spanish-Language Outreach 
+                            <span class="stcvr-role-sub">Translation and events</span>
+                        </h4>
+                        <p class="stcvr-hook">Make sure our work reaches Spanish-speaking Chicago.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                A few hours a month, with busier stretches before an event. Mostly remote.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-spanish-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Spanish-Language Outreach</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-spanish-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Translate handouts, social posts, and event details into Spanish. Help us show up at events in Spanish-speaking neighborhoods, and interpret when someone would rather talk in Spanish.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Are comfortable in Spanish and English, in writing and in conversation</li>
+                                <li>Can make a translation sound natural rather than literal</li>
+                                <li>Are willing to tell us when an idea needs to be said a different way, not just translated</li>
+                                <li>Can come to an event now and then, or would rather stick to translation work</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Translating for family, a job, a church, or a community group. No certification needed.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Spanish-Language Outreach" data-questions="Something about Chicago I'd like to see change: | Whether I'd rather translate in writing, help in person, or both: | Hours a month I can give:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- GROUP: Out in the city -->
+            <div class="stcvr-catsec is-sky">
+                <div class="stcvr-cat">
+                    <h3 class="stcvr-cat-title">
+                        <span class="stcvr-cat-dot" aria-hidden="true"></span>
+                        Out in the city
+                    </h3>
+                    <p class="stcvr-cat-sub">Show up in person: events, tables, and build days.</p>
+                </div>
+                <div class="stcvr-grid">
+
+                    <!-- ROLE 7: Event Planner -->
+                    <div class="stcvr-card" id="stcvr-events">
+                        <h4 class="stcvr-role">
+                            Event Planner 
+                            <span class="stcvr-role-sub">Outreach and logistics</span>
+                        </h4>
+                        <p class="stcvr-hook">Get the right people in the room for our events.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                A few hours a week, with busier stretches in the weeks before an event. Mostly remote, plus the events themselves.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-events-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Event Planner</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-events-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Help us plan events and get the word out. That means sorting out dates and venues, then reaching out to the groups whose members belong in the room: neighborhood associations, alders' offices, city agencies, professional groups, and others working on the same issues.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Are comfortable emailing people you haven't met, from block clubs to alders' offices</li>
+                                <li>Keep track of who you have contacted and follow up without being reminded</li>
+                                <li>Like the logistics: dates, venues, sign-in tables, and who brings the coffee</li>
+                                <li>Have ideas about which groups we should be talking to</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Planning anything with a guest list. A block party, a club meeting, or a work happy hour all count.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Event Planner" data-questions="Something about Chicago I'd like to see change: | An event or gathering I've helped organize, and groups I could help us reach: | Hours per week I can give, and whether evenings work for events:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 8: Outreach Volunteer -->
+                    <div class="stcvr-card" id="stcvr-outreach">
+                        <h4 class="stcvr-role">
+                            Outreach Volunteer 
+                            <span class="stcvr-role-sub">Tabling and canvassing</span>
+                        </h4>
+                        <p class="stcvr-hook">Talk with neighbors where they already are.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                A shift or two a month, usually on a weekend. In person.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-outreach-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Outreach Volunteer</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-outreach-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Run our table at farmers markets, street fairs, and neighborhood events. Hand out materials, sign people up for the newsletter, and answer the questions people ask about what we do. When a campaign is running, some of this is knocking on doors and talking with people on the street.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Like talking with strangers, and stay friendly when someone disagrees</li>
+                                <li>Can explain what we do in a couple of sentences, once we have walked you through it</li>
+                                <li>Can take a shift or two a month, usually on a weekend</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Any job or volunteer shift where you talked with the public. Retail, campaigns, a church coffee hour, or a booth at a street fair all count.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Outreach Volunteer" data-questions="Something about Chicago I'd like to see change: | Neighborhoods or events where I could help us table: | Weekends a month I could take a shift:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 9: Bench Building Lead -->
+                    <div class="stcvr-card" id="stcvr-bench">
+                        <h4 class="stcvr-role">Bench Building Lead</h4>
+                        <p class="stcvr-hook">Lead a hands-on project that gives Chicagoans more places to sit.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                A few hours a week of planning, plus build days (usually weekends). In person.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-bench-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Bench Building Lead</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-bench-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Plan and run our bench builds. That means settling on a simple design, pricing and gathering materials, scheduling build days, and walking volunteers through each step.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Are comfortable with power tools and basic woodworking</li>
+                                <li>Like teaching, and can show a first-timer how to use a tool safely</li>
+                                <li>Plan ahead, so materials and volunteers show up on the same day</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Weekend projects like building shelves, a deck, or furniture for your own place.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Bench Building Lead" data-questions="Something about Chicago I'd like to see change: | Something I've built, or a hands-on project I've organized: | Hours per week I can give, and whether weekends work for builds:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- GROUP: Behind the scenes -->
+            <div class="stcvr-catsec is-navy">
+                <div class="stcvr-cat">
+                    <h3 class="stcvr-cat-title">
+                        <span class="stcvr-cat-dot" aria-hidden="true"></span>
+                        Behind the scenes
+                    </h3>
+                    <p class="stcvr-cat-sub">The work that keeps everything else moving.</p>
+                </div>
+                <div class="stcvr-grid">
+
+                    <!-- ROLE 10: Print and Materials Lead -->
+                    <div class="stcvr-card" id="stcvr-print">
+                        <h4 class="stcvr-role">
+                            Print and Materials Lead 
+                            <span class="stcvr-role-sub">Handouts, posters, stickers, merch</span>
+                        </h4>
+                        <p class="stcvr-hook">Turn our designs into things people can hold.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                A few hours a week, busier before events. Mostly remote, plus pickups and drop-offs.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-print-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Print and Materials Lead</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-print-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Take finished designs and get them made. That means printing handouts and posters, ordering stickers, business cards, and shirts, comparing prices and turnaround times, and getting boxes to whoever is running the event.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Have ordered printing before, or are willing to learn what bleed and resolution mean</li>
+                                <li>Shop around on price and turnaround before placing an order</li>
+                                <li>Keep an eye on what we have left and reorder before we run out</li>
+                                <li>Have somewhere to keep a few boxes and a way to move them</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Ordering shirts for a team, getting flyers printed for a show, or running a club or school store.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Print and Materials Lead" data-questions="Something about Chicago I'd like to see change: | Something I've had printed or produced before: | Hours a month I can give:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 11: Website Admin -->
+                    <div class="stcvr-card" id="stcvr-web">
+                        <h4 class="stcvr-role">
+                            Website Admin 
+                            <span class="stcvr-role-sub">Squarespace upkeep</span>
+                        </h4>
+                        <p class="stcvr-hook">Keep the site current so people find what they need.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                About 1 to 3 hours a week. Remote.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-web-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Website Admin</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-web-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Keep strongtownschicago.org up to date. Post events, publish new pages, fix broken links, keep the tools hub and volunteer pages current, and check that new pages look right on a phone.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Have kept a website up to date before, in Squarespace, WordPress, or something similar</li>
+                                <li>Notice the small things: a broken link, an old date, a page that breaks on a phone</li>
+                                <li>Can make a quick change within a day or two when something is time sensitive</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Any site you have kept current, including a personal site, a club page, or a small business site. We can walk you through the Squarespace parts.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Website Admin" data-questions="Something about Chicago I'd like to see change: | A site I've edited or kept up to date: | Hours per week I can realistically give:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROLE 12: Note Taker -->
+                    <div class="stcvr-card" id="stcvr-notes">
+                        <h4 class="stcvr-role">
+                            Note Taker 
+                            <span class="stcvr-role-sub">Meetings and follow-ups</span>
+                        </h4>
+                        <p class="stcvr-hook">Keep track of what we decided so nothing gets lost.</p>
+                        <p class="stcvr-time">
+                            <svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 7v5l3 2"/>
+                            </svg>
+                            <span>
+                                <span class="stcvr-sr">Time: </span>
+                                About 2 hours a week, tied to our meeting schedule. Remote.
+                            </span>
+                        </p>
+                        <button type="button" class="stcvr-toggle" aria-expanded="false" aria-controls="stcvr-notes-details">
+                            <span class="stcvr-toggle-text">See details</span>
+                            <span class="stcvr-sr"> for Note Taker</span>
+                            <svg viewBox="0 0 24 24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="stcvr-details" id="stcvr-notes-details">
+                            <p class="stcvr-label">What you'd do</p>
+                            <p class="stcvr-text">Take notes at our meetings, write up what was decided and who agreed to do what, and post the summary where everyone can find it. Send a short reminder before the next meeting about what is still open.</p>
+                            <p class="stcvr-label">You'd be a good fit if you</p>
+                            <ul class="stcvr-list" role="list">
+                                <li>Can listen and type at the same time, and catch the decision inside a long discussion</li>
+                                <li>Write clearly enough that someone who missed the meeting can follow along</li>
+                                <li>Can post notes within a day or two, while they are still fresh</li>
+                                <li>Can make most of our regular meetings</li>
+                            </ul>
+                            <p class="stcvr-exp">
+                                <strong>Experience that counts:</strong>
+                                    Taking minutes for any group: a board, a club, a class, or a job. Careful notes from your own work count.
+                            </p>
+                            <div class="stcvr-card-foot">
+                                <a class="stcvr-btn" href="#stcvr-reply" data-role="Note Taker" data-questions="Something about Chicago I'd like to see change: | Meetings or groups I've taken notes for before: | Which of our regular meeting times I could make:">
+                                    <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>
+                                    </svg>
+
+                                                    Email us about this role
+                                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================== WHAT HAPPENS NEXT ============================== -->
+    <div class="stcvr-section stcvr-panel stcvr-reply" id="stcvr-reply" role="region" aria-labelledby="stcvr-reply-title">
+        <h2 class="stcvr-h2" id="stcvr-reply-title">
+            <span class="stcvr-mark">Every email gets a reply</span>
+        </h2>
+        <ol class="stcvr-steps" role="list">
+            <li class="stcvr-step">
+                <span class="stcvr-step-num" aria-hidden="true">1</span>
+                <p>
+                    <strong>We read it and reply within a week.</strong>
+                </p>
+            </li>
+            <li class="stcvr-step">
+                <span class="stcvr-step-num" aria-hidden="true">2</span>
+                <p>
+                    <strong>If it looks like a match,</strong>
+                        we'll set up a quick call or coffee to talk through the role and answer your questions.
+                </p>
+            </li>
+            <li class="stcvr-step">
+                <span class="stcvr-step-num" aria-hidden="true">3</span>
+                <p>
+                    <strong>If it's not the right fit, or the role is already full,</strong>
+                        we'll let you know and suggest other ways to get involved.
+                </p>
+            </li>
+        </ol>
+        <div class="stcvr-fallback">
+            <span>
+                Button not opening your email? Write to us at 
+                <a data-stcvr-email href="#stcvr-reply">our volunteer inbox</a>
+                    and put the role name in the subject line.
+            </span>
+            <button type="button" class="stcvr-copy" data-stcvr-copy hidden>Copy address</button>
+        </div>
+    </div>
+
+    <!-- ============================== OTHER WAYS TO HELP ============================== -->
+    <div class="stcvr-section stcvr-panel stcvr-more" role="region" aria-labelledby="stcvr-more-title">
+        <h2 class="stcvr-h2" id="stcvr-more-title">None of these fit? There's still plenty to do.</h2>
+        <p class="stcvr-sub">These are the roles we need most right now. You can also:</p>
+        <ul class="stcvr-links" role="list">
+            <li>
+                <a class="stcvr-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeKxE1v2WDEfPrhSAurOSTqBYJQhEaceM8osv0ecVso1-J0-Q/viewform" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <rect x="5" y="4" width="14" height="17" rx="1"/>
+                        <path d="M9 4V2.8h6V4"/>
+                        <path d="M8.5 10h7M8.5 13.5h7M8.5 17h4"/>
+                    </svg>
+                    <span>Fill out our general volunteer form</span>
+                    <span class="stcvr-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+            <li>
+                <a class="stcvr-link" href="http://link.strongtownschicago.org/slack" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M4 5h16v11H10l-6 4.5z"/>
+                        <path d="M8.5 9.5h7M8.5 12.5h4.5"/>
+                    </svg>
+                    <span>Join our Slack</span>
+                    <span class="stcvr-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+            <li>
+                <a class="stcvr-link" href="https://www.strongtownschicago.org/events">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <rect x="3.5" y="5" width="17" height="15" rx="1"/>
+                        <path d="M3.5 10h17M8 3v4M16 3v4"/>
+                    </svg>
+                    <span>Come to an upcoming event</span>
+                    <span class="stcvr-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+    (function() {
+        function init() {
+            var root = document.getElementById('stcvr');
+            if (!root || root.getAttribute('data-stcvr-ready') === '1')
+                return;
+            root.setAttribute('data-stcvr-ready', '1');
+
+            var email = (root.getAttribute('data-email') || '').replace(/\s+/g, '');
+            var needsSetup = !email || /change-me|example\.com/i.test(email);
+
+            // Build each role's pre-filled email
+            Array.prototype.forEach.call(root.querySelectorAll('a[data-role]'), function(btn) {
+                var role = btn.getAttribute('data-role') || '';
+                var questions = (btn.getAttribute('data-questions') || '').split('|')
+                .map(function(q) {
+                    return q.trim();
+                })
+                .filter(function(q) {
+                    return q.length > 0;
+                });
+                var lines = ['Hi Strong Towns Chicago,', '', "I'm interested in the " + role + ' role.', ''];
+                questions.forEach(function(q, i) {
+                    lines.push((i + 1) + '. ' + q, '');
+                });
+                lines.push('Thanks,');
+                btn.setAttribute('href', 'mailto:' + email +
+                '?subject=' + encodeURIComponent('Volunteer role: ' + role) +
+                '&body=' + encodeURIComponent(lines.join('\r\n')));
+            });
+
+            // Open and close role details
+            root.classList.add('stcvr-js');
+            var setOpen = function(card, open) {
+                card.classList.toggle('is-open', open);
+                var toggle = card.querySelector('.stcvr-toggle');
+                if (!toggle)
+                    return;
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                var text = toggle.querySelector('.stcvr-toggle-text');
+                if (text)
+                    text.textContent = open ? 'Hide details' : 'See details';
+            };
+            var cards = root.querySelectorAll('.stcvr-card');
+            var expandBtn = root.querySelector('[data-stcvr-expand]');
+            var anyClosed = function() {
+                for (var i = 0; i < cards.length; i++) {
+                    if (!cards[i].classList.contains('is-open'))
+                        return true;
+                }
+                return false;
+            };
+            var syncExpand = function() {
+                if (expandBtn)
+                    expandBtn.textContent = anyClosed() ? 'Open all roles' : 'Close all roles';
+            };
+            Array.prototype.forEach.call(cards, function(card) {
+                var toggle = card.querySelector('.stcvr-toggle');
+                if (toggle) {
+                    toggle.addEventListener('click', function() {
+                        setOpen(card, !card.classList.contains('is-open'));
+                        syncExpand();
+                    });
+                }
+            });
+            if (expandBtn) {
+                expandBtn.addEventListener('click', function() {
+                    var open = anyClosed();
+                    Array.prototype.forEach.call(cards, function(card) {
+                        setOpen(card, open);
+                    });
+                    syncExpand();
+                });
+            }
+
+            // Open a role automatically when someone arrives from a link like #stcvr-bench
+            var openFromHash = function() {
+                var target = document.getElementById((window.location.hash || '').replace(/^#/, ''));
+                if (target && root.contains(target) && target.classList.contains('stcvr-card'))
+                    setOpen(target, true);
+            };
+            openFromHash();
+            syncExpand();
+            window.addEventListener('hashchange', function() {
+                openFromHash();
+                syncExpand();
+            });
+
+            // Show the address as plain text for people whose mail app doesn't open
+            Array.prototype.forEach.call(root.querySelectorAll('[data-stcvr-email]'), function(a) {
+                a.textContent = email;
+                a.setAttribute('href', 'mailto:' + email);
+            });
+
+            // Copy-address button
+            var copyBtn = root.querySelector('[data-stcvr-copy]');
+            if (copyBtn && !needsSetup) {
+                copyBtn.hidden = false;
+                var label = copyBtn.textContent;
+                var timer;
+                var flash = function(text) {
+                    copyBtn.textContent = text;
+                    clearTimeout(timer);
+                    timer = setTimeout(function() {
+                        copyBtn.textContent = label;
+                    }, 2200);
+                };
+                var fallbackCopy = function() {
+                    var target = root.querySelector('[data-stcvr-email]');
+                    var ok = false;
+                    if (target && window.getSelection && document.createRange) {
+                        var range = document.createRange();
+                        range.selectNodeContents(target);
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                        try {
+                            ok = document.execCommand('copy');
+                        } catch (e) {
+                            ok = false;
+                        }
+                    }
+                    flash(ok ? 'Copied' : 'Selected, copy it now');
+                };
+                copyBtn.addEventListener('click', function() {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(email).then(function() {
+                            flash('Copied');
+                        }, fallbackCopy);
+                    } else {
+                        fallbackCopy();
+                    }
+                });
+            }
+
+            // Reminder that only appears until the inbox address is set
+            if (needsSetup) {
+                var note = document.createElement('p');
+                note.className = 'stcvr-setup';
+                note.setAttribute('role', 'alert');
+                note.textContent = 'Setup needed: replace CHANGE-ME@example.com at the top of this code block with your volunteer inbox address. The email buttons will not work until you do.';
+                root.insertBefore(note, root.firstChild);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+
+</div>
