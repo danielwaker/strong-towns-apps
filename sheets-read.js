@@ -16,6 +16,10 @@
     var upcomingSection = root.querySelector('[data-stcvr-upcoming]');
     var upcomingGrid = root.querySelector('[data-stcvr-upcoming-grid]');
     var status = root.querySelector('[data-stcvr-status]');
+    var locationResults = Object.create(null);
+    var locationQueue = Promise.resolve();
+    var lastLocationRequest = 0;
+    var locationCachePrefix = 'stcvr-osm-location-v1:';
     var email = (root.getAttribute('data-email') || '').replace(/\s+/g, '');
 
     function cellValue(cell) {
@@ -109,7 +113,7 @@
         var headers = table.cols.map(function(column) {
             var label = column.label || column.id || '';
             var knownHeaders = ['category', 'role', 'sub-header', 'description',
-                'responsibilities', 'experience', 'commitment', 'priority', 'date'];
+                'responsibilities', 'experience', 'commitment', 'priority', 'date', 'location'];
             var normalized = columnName(label);
             for (var i = 0; i < knownHeaders.length; i++) {
                 if (normalized === knownHeaders[i] ||
@@ -164,7 +168,8 @@
                 experience: get('experience'),
                 commitment: get('commitment'),
                 date: dateDisplay,
-                parsedDate: parsedDate
+                parsedDate: parsedDate,
+                location: get('location')
             };
         }).filter(function(role) {
             return role.role;
@@ -297,6 +302,46 @@
             card.appendChild(date);
         }
 
+        if (role.location) {
+            var location = element('p', 'stcvr-time stcvr-role-location');
+            var pin = svgElement('svg');
+            pin.setAttribute('viewBox', '0 0 24 24');
+            pin.setAttribute('stroke-width', '2.2');
+            pin.setAttribute('stroke-linecap', 'round');
+            pin.setAttribute('stroke-linejoin', 'round');
+            pin.setAttribute('aria-hidden', 'true');
+            pin.setAttribute('focusable', 'false');
+            var pinShape = svgElement('path');
+            pinShape.setAttribute('d', 'M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z');
+            var pinDot = svgElement('circle');
+            pinDot.setAttribute('cx', '12');
+            pinDot.setAttribute('cy', '10');
+            pinDot.setAttribute('r', '2.5');
+            pin.appendChild(pinShape);
+            pin.appendChild(pinDot);
+            location.appendChild(pin);
+            var locationText = element('span');
+            appendText(locationText, 'span', 'stcvr-sr', 'Location: ');
+            var placeContent = element('span', 'stcvr-place');
+            placeContent.setAttribute('data-place-address', role.location);
+            var addressLink = element('a', 'stcvr-place-address', role.location);
+            addressLink.href = 'https://www.openstreetmap.org/search?query=' +
+                encodeURIComponent(role.location);
+            addressLink.target = '_blank';
+            addressLink.rel = 'noopener';
+            placeContent.appendChild(addressLink);
+            var attribution = element('small', 'stcvr-place-attribution');
+            var osmLink = element('a', '', '\u00a9 OpenStreetMap contributors');
+            osmLink.href = 'https://www.openstreetmap.org/copyright';
+            osmLink.target = '_blank';
+            osmLink.rel = 'noopener';
+            attribution.appendChild(osmLink);
+            placeContent.appendChild(attribution);
+            locationText.appendChild(placeContent);
+            location.appendChild(locationText);
+            card.appendChild(location);
+        }
+
         var toggle = element('button', 'stcvr-toggle');
         toggle.type = 'button';
         toggle.setAttribute('aria-expanded', 'false');
@@ -339,6 +384,139 @@
         details.appendChild(foot);
         card.appendChild(details);
         return card;
+    }
+
+    function addPlaceDetails() {
+        var placeElements = Array.prototype.slice.call(root.querySelectorAll('.stcvr-place'));
+        if (!placeElements.length) {
+            return;
+        }
+        placeElements.forEach(function(placeElement) {
+            var address = placeElement.getAttribute('data-place-address') || '';
+            lookupLocation(address).then(function(result) {
+                if (placeElement.isConnected) {
+                    renderPlace(placeElement, result);
+                }
+            }).catch(function(error) {
+                showLocationLookupError(placeElement, error);
+            });
+        });
+    }
+
+    function lookupLocation(address) {
+        if (locationResults[address]) {
+            return locationResults[address];
+        }
+        var cachedResult = getCachedLocation(address);
+        if (cachedResult) {
+            locationResults[address] = Promise.resolve(cachedResult);
+            return locationResults[address];
+        }
+
+        var request = locationQueue.then(function() {
+            var wait = Math.max(0, 1000 - (Date.now() - lastLocationRequest));
+            return new Promise(function(resolve) {
+                setTimeout(resolve, wait);
+            });
+        }).then(function() {
+            lastLocationRequest = Date.now();
+            var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1' +
+                '&namedetails=1&limit=5&q=' + encodeURIComponent(address);
+            return fetch(url, {
+                headers: {
+                    Accept: 'application/json'
+                }
+            }).then(function(response) {
+                if (!response.ok) {
+                    throw new Error('OpenStreetMap search failed with status ' + response.status + '.');
+                }
+                return response.json();
+            }).then(function(results) {
+                if (!Array.isArray(results) || results.length === 0) {
+                    throw new Error('OpenStreetMap did not find this address.');
+                }
+                var place = results.find(function(result) {
+                    return result.name || (result.namedetails &&
+                        (result.namedetails['name:en'] || result.namedetails.name));
+                }) || results[0];
+                var name = place.name || (place.namedetails &&
+                    (place.namedetails['name:en'] || place.namedetails.name)) || '';
+                var result = {
+                    name: name,
+                    address: address,
+                    latitude: place.lat,
+                    longitude: place.lon
+                };
+                cacheLocation(address, result);
+                return result;
+            });
+        });
+        locationQueue = request.then(function() {}, function() {});
+        locationResults[address] = request;
+        return request;
+    }
+
+    function getCachedLocation(address) {
+        try {
+            var cached = localStorage.getItem(locationCachePrefix + address);
+            if (!cached) {
+                return null;
+            }
+            var entry = JSON.parse(cached);
+            if (entry.expiresAt <= Date.now() || !entry.result) {
+                localStorage.removeItem(locationCachePrefix + address);
+                return null;
+            }
+            return entry.result;
+        } catch (error) {
+            console.warn('Unable to read the saved OpenStreetMap location cache:', error);
+            return null;
+        }
+    }
+
+    function cacheLocation(address, result) {
+        try {
+            localStorage.setItem(locationCachePrefix + address, JSON.stringify({
+                expiresAt: Date.now() + 30 * 24 * 60 * 60 * 1000,
+                result: result
+            }));
+        } catch (error) {
+            console.warn('Unable to save the OpenStreetMap location cache:', error);
+        }
+    }
+
+    function showLocationLookupError(placeElement, error) {
+        console.error('Unable to find this location in OpenStreetMap:', error);
+        placeElement.setAttribute('title', 'OpenStreetMap could not find a place name for this address.');
+        if (!placeElement.querySelector('.stcvr-place-note')) {
+            placeElement.appendChild(element('small', 'stcvr-place-note', 'Place name unavailable.'));
+        }
+    }
+
+    function renderPlace(placeElement, result) {
+        var addressLink = element('a', 'stcvr-place-address', result.address);
+        var coordinates = result.latitude && result.longitude
+            ? '?mlat=' + encodeURIComponent(result.latitude) + '&mlon=' +
+                encodeURIComponent(result.longitude) + '#map=18/' +
+                encodeURIComponent(result.latitude) + '/' + encodeURIComponent(result.longitude)
+            : 'search?query=' + encodeURIComponent(result.address);
+        addressLink.href = 'https://www.openstreetmap.org/' + coordinates;
+        addressLink.target = '_blank';
+        addressLink.rel = 'noopener';
+
+        placeElement.replaceChildren();
+        if (result.name) {
+            placeElement.appendChild(element('strong', 'stcvr-place-name', result.name));
+            placeElement.appendChild(document.createTextNode(' \u2014 '));
+        }
+        placeElement.appendChild(addressLink);
+        var attribution = element('small', 'stcvr-place-attribution');
+        var osmLink = element('a', '', '\u00a9 OpenStreetMap contributors');
+        osmLink.href = 'https://www.openstreetmap.org/copyright';
+        osmLink.target = '_blank';
+        osmLink.rel = 'noopener';
+        attribution.appendChild(osmLink);
+        placeElement.appendChild(attribution);
     }
 
     function buildRoleGroups(roles, groupBy) {
@@ -636,10 +814,12 @@
                     status.hidden = true;
                 }
                 setupEmailLinks();
+                addPlaceDetails();
                 var syncExpand = setupInteractions();
                 if (groupBy) {
                     groupBy.addEventListener('change', function() {
                         var groupCount = buildRoleGroups(generalRoles, groupBy.value);
+                        addPlaceDetails();
                         updateSummary(groupBy.value, groupCount);
                         syncExpand();
                     });
