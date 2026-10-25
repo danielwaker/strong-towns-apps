@@ -100,6 +100,10 @@
         return node;
     }
 
+    function svgElement(tag) {
+        return document.createElementNS('http://www.w3.org/2000/svg', tag);
+    }
+
     function slug(text) {
         return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'role';
     }
@@ -108,20 +112,20 @@
         var button = element('a', 'stcvr-btn');
         button.setAttribute('data-role', roleName);
         button.setAttribute('href', '#stcvr-reply');
-        var icon = element('svg');
+        var icon = svgElement('svg');
         icon.setAttribute('viewBox', '0 0 24 24');
         icon.setAttribute('stroke-width', '2.2');
         icon.setAttribute('stroke-linecap', 'round');
         icon.setAttribute('stroke-linejoin', 'round');
         icon.setAttribute('aria-hidden', 'true');
         icon.setAttribute('focusable', 'false');
-        var rect = element('rect');
+        var rect = svgElement('rect');
         rect.setAttribute('x', '3');
         rect.setAttribute('y', '5');
         rect.setAttribute('width', '18');
         rect.setAttribute('height', '14');
         rect.setAttribute('rx', '1');
-        var path = element('path');
+        var path = svgElement('path');
         path.setAttribute('d', 'M3.5 6.5l8.5 6.5 8.5-6.5');
         icon.appendChild(rect);
         icon.appendChild(path);
@@ -141,18 +145,18 @@
 
         if (role.commitment) {
             var time = element('p', 'stcvr-time');
-            var icon = element('svg');
+            var icon = svgElement('svg');
             icon.setAttribute('viewBox', '0 0 24 24');
             icon.setAttribute('stroke-width', '2.4');
             icon.setAttribute('stroke-linecap', 'round');
             icon.setAttribute('stroke-linejoin', 'round');
             icon.setAttribute('aria-hidden', 'true');
             icon.setAttribute('focusable', 'false');
-            var circle = element('circle');
+            var circle = svgElement('circle');
             circle.setAttribute('cx', '12');
             circle.setAttribute('cy', '12');
             circle.setAttribute('r', '9');
-            var clockHand = element('path');
+            var clockHand = svgElement('path');
             clockHand.setAttribute('d', 'M12 7v5l3 2');
             icon.appendChild(circle);
             icon.appendChild(clockHand);
@@ -170,14 +174,14 @@
         toggle.setAttribute('aria-controls', id + '-details');
         appendText(toggle, 'span', 'stcvr-toggle-text', 'See details');
         appendText(toggle, 'span', 'stcvr-sr', ' for ' + role.role);
-        var chevron = element('svg');
+        var chevron = svgElement('svg');
         chevron.setAttribute('viewBox', '0 0 24 24');
         chevron.setAttribute('stroke-width', '2.6');
         chevron.setAttribute('stroke-linecap', 'round');
         chevron.setAttribute('stroke-linejoin', 'round');
         chevron.setAttribute('aria-hidden', 'true');
         chevron.setAttribute('focusable', 'false');
-        var chevronPath = element('path');
+        var chevronPath = svgElement('path');
         chevronPath.setAttribute('d', 'M6 9l6 6 6-6');
         chevron.appendChild(chevronPath);
         toggle.appendChild(chevron);
