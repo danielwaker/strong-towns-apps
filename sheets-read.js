@@ -4,7 +4,7 @@
     var sheetId = '1zd9E7284QgXLppdIHDb7LYYgF8gSzHkn4IkBRbgfbgk';
     var sheetName = 'Sheet1';
     var sheetUrl = 'https://docs.google.com/spreadsheets/d/' + sheetId +
-        '/gviz/tq?sheet=' + encodeURIComponent(sheetName);
+        '/gviz/tq?sheet=' + encodeURIComponent(sheetName) + '&headers=1';
     var categoryColors = ['is-gold', 'is-coral', 'is-sky', 'is-navy'];
     var root = document.getElementById('stcvr');
 
@@ -13,6 +13,8 @@
     }
 
     var bands = root.querySelector('.stcvr-bands');
+    var upcomingSection = root.querySelector('[data-stcvr-upcoming]');
+    var upcomingGrid = root.querySelector('[data-stcvr-upcoming-grid]');
     var status = root.querySelector('[data-stcvr-status]');
     var email = (root.getAttribute('data-email') || '').replace(/\s+/g, '');
 
@@ -28,6 +30,76 @@
         return String(value || '').trim().toLowerCase();
     }
 
+    function parseSheetDate(value) {
+        if (!value) {
+            return null;
+        }
+        if (value instanceof Date && !isNaN(value.getTime())) {
+            return value;
+        }
+        var text = String(value).trim();
+        var gvizDate = text.match(/^Date\((\d{4}),(\d{1,2}),(\d{1,2})(?:,(\d{1,2}),(\d{1,2}),(\d{1,2}))?\)$/);
+        if (gvizDate) {
+            return new Date(
+                Number(gvizDate[1]),
+                Number(gvizDate[2]),
+                Number(gvizDate[3]),
+                Number(gvizDate[4] || 0),
+                Number(gvizDate[5] || 0),
+                Number(gvizDate[6] || 0)
+            );
+        }
+
+        var namedDate = text.match(/^(?:[A-Za-z]+,\s*)?([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})(?:\s+(\d{1,2}):(\d{2})\s*(AM|PM))?$/i);
+        if (namedDate) {
+            var months = ['january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'];
+            var month = months.indexOf(namedDate[1].toLowerCase());
+            if (month >= 0) {
+                var hour = Number(namedDate[4] || 0) % 12;
+                if (namedDate[6] && namedDate[6].toUpperCase() === 'PM') {
+                    hour += 12;
+                }
+                return new Date(
+                    Number(namedDate[3]),
+                    month,
+                    Number(namedDate[2]),
+                    hour,
+                    Number(namedDate[5] || 0)
+                );
+            }
+        }
+
+        var numericDate = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})\s*(AM|PM))?$/i);
+        if (numericDate) {
+            var numericHour = Number(numericDate[4] || 0) % 12;
+            if (numericDate[6] && numericDate[6].toUpperCase() === 'PM') {
+                numericHour += 12;
+            }
+            return new Date(
+                Number(numericDate[3]),
+                Number(numericDate[1]) - 1,
+                Number(numericDate[2]),
+                numericHour,
+                Number(numericDate[5] || 0)
+            );
+        }
+        return null;
+    }
+
+    function formatSheetDate(date) {
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var months = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+        var hour = date.getHours();
+        var period = hour >= 12 ? 'PM' : 'AM';
+        var hour12 = hour % 12 || 12;
+        return days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() +
+            ', ' + date.getFullYear() + ' ' +
+            (hour12 < 10 ? '0' : '') + hour12 + ':' +
+            (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ' ' + period;
+    }
+
     function readTable(data) {
         var table = data && data.table;
         if (!table || !Array.isArray(table.rows) || !Array.isArray(table.cols)) {
@@ -35,7 +107,18 @@
         }
 
         var headers = table.cols.map(function(column) {
-            return column.label || column.id || '';
+            var label = column.label || column.id || '';
+            var knownHeaders = ['category', 'role', 'sub-header', 'description',
+                'responsibilities', 'experience', 'commitment', 'priority', 'date'];
+            var normalized = columnName(label);
+            for (var i = 0; i < knownHeaders.length; i++) {
+                if (normalized === knownHeaders[i] ||
+                    normalized.indexOf(knownHeaders[i] + ' ') === 0 ||
+                    normalized.indexOf(knownHeaders[i] + '(') === 0) {
+                    return knownHeaders[i];
+                }
+            }
+            return label;
         });
         var rows = table.rows;
         var firstRow = rows.length ? (rows[0].c || []).map(cellValue) : [];
@@ -56,8 +139,8 @@
             indexes[columnName(header)] = index;
         });
 
-        if (indexes.category == null || indexes.role == null) {
-            throw new Error('The spreadsheet needs Category and Role columns.');
+        if (indexes.role == null) {
+            throw new Error('The spreadsheet needs a Role column.');
         }
 
         return rows.map(function(row) {
@@ -66,6 +149,11 @@
                 var index = indexes[name];
                 return index == null ? '' : cellValue(cells[index]);
             };
+            var dateIndex = indexes.date;
+            var dateCell = dateIndex == null ? null : cells[dateIndex];
+            var rawDate = dateCell && dateCell.v != null ? dateCell.v : '';
+            var dateDisplay = cellValue(dateCell) || (rawDate ? String(rawDate).trim() : '');
+            var parsedDate = parseSheetDate(rawDate) || parseSheetDate(dateDisplay);
             return {
                 category: get('category'),
                 priority: get('priority'),
@@ -74,10 +162,12 @@
                 description: get('description'),
                 responsibilities: get('responsibilities'),
                 experience: get('experience'),
-                commitment: get('commitment')
+                commitment: get('commitment'),
+                date: dateDisplay,
+                parsedDate: parsedDate
             };
         }).filter(function(role) {
-            return role.category && role.role;
+            return role.role;
         });
     }
 
@@ -167,6 +257,44 @@
             timeText.appendChild(document.createTextNode(role.commitment));
             time.appendChild(timeText);
             card.appendChild(time);
+        }
+
+        if (role.date) {
+            var date = element('p', 'stcvr-time stcvr-role-date');
+            var calendar = svgElement('svg');
+            calendar.setAttribute('viewBox', '0 0 24 24');
+            calendar.setAttribute('stroke-width', '2.2');
+            calendar.setAttribute('stroke-linecap', 'round');
+            calendar.setAttribute('stroke-linejoin', 'round');
+            calendar.setAttribute('aria-hidden', 'true');
+            calendar.setAttribute('focusable', 'false');
+            var calendarShape = svgElement('rect');
+            calendarShape.setAttribute('x', '3.5');
+            calendarShape.setAttribute('y', '5');
+            calendarShape.setAttribute('width', '17');
+            calendarShape.setAttribute('height', '16');
+            calendarShape.setAttribute('rx', '1');
+            var calendarLines = svgElement('path');
+            calendarLines.setAttribute('d', 'M7.5 3v4M16.5 3v4M3.5 10h17');
+            calendar.appendChild(calendarShape);
+            calendar.appendChild(calendarLines);
+            date.appendChild(calendar);
+            var dateText = element('span');
+            appendText(dateText, 'span', 'stcvr-sr', 'Date: ');
+            var time = element('time', '');
+            if (role.parsedDate) {
+                time.setAttribute('datetime', role.parsedDate.getFullYear() + '-' +
+                    String(role.parsedDate.getMonth() + 1).padStart(2, '0') + '-' +
+                    String(role.parsedDate.getDate()).padStart(2, '0') + 'T' +
+                    String(role.parsedDate.getHours()).padStart(2, '0') + ':' +
+                    String(role.parsedDate.getMinutes()).padStart(2, '0'));
+                time.textContent = formatSheetDate(role.parsedDate);
+            } else {
+                time.textContent = role.date;
+            }
+            dateText.appendChild(time);
+            date.appendChild(dateText);
+            card.appendChild(date);
         }
 
         var toggle = element('button', 'stcvr-toggle');
@@ -265,8 +393,44 @@
             section.appendChild(grid);
             fragment.appendChild(section);
         });
+        if (groupNames.length === 0) {
+            fragment.appendChild(element('p', 'stcvr-hint stcvr-loading', 'No other roles listed right now.'));
+        }
         bands.replaceChildren(fragment);
         return groupNames.length;
+    }
+
+    function buildUpcomingRoles(roles) {
+        var datedRoles = roles.filter(function(role) {
+            return role.date;
+        }).sort(function(a, b) {
+            if (!a.parsedDate) {
+                return b.parsedDate ? 1 : 0;
+            }
+            if (!b.parsedDate) {
+                return -1;
+            }
+            return a.parsedDate.getTime() - b.parsedDate.getTime();
+        });
+
+        if (!upcomingSection || !upcomingGrid) {
+            return datedRoles.length;
+        }
+        upcomingSection.hidden = datedRoles.length === 0;
+        var usedIds = Object.create(null);
+        var fragment = document.createDocumentFragment();
+        datedRoles.forEach(function(role) {
+            var baseId = 'stcvr-upcoming-' + slug(role.role);
+            var id = baseId;
+            var suffix = 2;
+            while (usedIds[id] || document.getElementById(id)) {
+                id = baseId + '-' + suffix++;
+            }
+            usedIds[id] = true;
+            fragment.appendChild(makeCard(role, id));
+        });
+        upcomingGrid.replaceChildren(fragment);
+        return datedRoles.length;
     }
 
     function setStatus(message, isError) {
@@ -340,6 +504,7 @@
             openFromHash();
             syncExpand();
         });
+        return syncExpand;
     }
 
     function setupEmailLinks() {
@@ -441,33 +606,42 @@
                     setStatus('There are no volunteer roles listed right now.', false);
                     return;
                 }
+                var upcomingCount = buildUpcomingRoles(roles);
+                var generalRoles = roles.filter(function(role) {
+                    return !role.date;
+                });
                 var groupBy = root.querySelector('[data-stcvr-group-by]');
                 var grouping = groupBy ? groupBy.value : 'category';
-                var groupCount = buildRoleGroups(roles, grouping);
+                var groupCount = buildRoleGroups(generalRoles, grouping);
                 var countText = root.querySelector('[data-stcvr-role-count]');
-                if (countText) {
-                    countText.textContent = 'Right now ' + roles.length + ' roles are open, grouped into ' +
-                        groupCount + ' ' + (grouping === 'priority' ? 'priority levels' : 'kinds of work') +
+                var updateSummary = function(grouping, count) {
+                    if (!countText) {
+                        return;
+                    }
+                    var summary = 'Right now ' + roles.length + ' roles are open';
+                    if (upcomingCount) {
+                        summary += ', including ' + upcomingCount + ' upcoming';
+                    }
+                    if (count) {
+                        var groupLabel = grouping === 'priority' ? 'priority levels' : 'kinds of work';
+                        summary += upcomingCount
+                            ? '. The remaining ' + generalRoles.length + ' are grouped into ' + count + ' ' + groupLabel
+                            : '. Grouped into ' + count + ' ' + groupLabel;
+                    }
+                    countText.textContent = summary +
                         '. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We\'ll follow up to talk it through and make sure it\'s a good fit on both sides.';
                 }
+                updateSummary(grouping, groupCount);
                 if (status) {
                     status.hidden = true;
                 }
                 setupEmailLinks();
-                setupInteractions();
+                var syncExpand = setupInteractions();
                 if (groupBy) {
                     groupBy.addEventListener('change', function() {
-                        var groupCount = buildRoleGroups(roles, groupBy.value);
-                        if (countText) {
-                            countText.textContent = 'Right now ' + roles.length + ' roles are open, grouped into ' +
-                                groupCount + ' ' +
-                                (groupBy.value === 'priority' ? 'priority levels' : 'kinds of work') +
-                                '. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We\'ll follow up to talk it through and make sure it\'s a good fit on both sides.';
-                        }
-                        var expandControl = root.querySelector('[data-stcvr-expand]');
-                        if (expandControl) {
-                            expandControl.textContent = 'Open all roles';
-                        }
+                        var groupCount = buildRoleGroups(generalRoles, groupBy.value);
+                        updateSummary(groupBy.value, groupCount);
+                        syncExpand();
                     });
                 }
             })
