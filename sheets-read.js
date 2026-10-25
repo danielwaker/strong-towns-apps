@@ -427,7 +427,7 @@
                 var countText = root.querySelector('[data-stcvr-role-count]');
                 if (countText) {
                     countText.textContent = 'Right now ' + roles.length + ' roles are open, grouped into ' +
-                        categoryCount + ' kinds of work. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We’ll follow up to talk it through and make sure it’s a good fit on both sides.';
+                        categoryCount + ' kinds of work. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We\'ll follow up to talk it through and make sure it\'s a good fit on both sides.';
                 }
                 if (status) {
                     status.hidden = true;
