@@ -234,6 +234,13 @@
         display: flex;
     }
 
+    #stcvr .stcvr-tools-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 20px;
+    }
+
     #stcvr p.stcvr-hint {
         font-size: 16.5px;
         line-height: 1.5;
@@ -268,6 +275,28 @@
 
     #stcvr button.stcvr-expand:hover {
         background: var(--stcvr-cream);
+    }/* Colour bands: one per group of roles, run edge to edge inside the block */
+
+    #stcvr .stcvr-group-control {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--stcvr-navy);
+        font-family: var(--stcvr-head);
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    #stcvr .stcvr-group-control select {
+        min-height: 0;
+        padding: 9px 32px 9px 12px;
+        border: 2.5px solid var(--stcvr-navy);
+        border-radius: 0;
+        background: var(--stcvr-paper);
+        color: var(--stcvr-navy);
+        box-shadow: 3px 3px 0 var(--stcvr-navy);
+        font: inherit;
+        cursor: pointer;
     }/* Colour bands: one per group of roles, run edge to edge inside the block */
 
     #stcvr .stcvr-bands {
@@ -856,7 +885,16 @@
         </h2>
         <div class="stcvr-tools">
             <p class="stcvr-hint">Open a role to see what it involves and how to reach us.</p>
-            <button type="button" class="stcvr-expand" data-stcvr-expand>Open all roles</button>
+            <div class="stcvr-tools-actions">
+                <label class="stcvr-group-control">
+                    Group roles by
+                    <select data-stcvr-group-by>
+                        <option value="category">Category</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                </label>
+                <button type="button" class="stcvr-expand" data-stcvr-expand>Open all roles</button>
+            </div>
         </div>
 
         <div class="stcvr-bands">

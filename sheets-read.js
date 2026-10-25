@@ -68,6 +68,7 @@
             };
             return {
                 category: get('category'),
+                priority: get('priority'),
                 role: get('role'),
                 subHeader: get('sub-header'),
                 description: get('description'),
@@ -212,31 +213,46 @@
         return card;
     }
 
-    function buildRoleGroups(roles) {
-        var categories = [];
+    function buildRoleGroups(roles, groupBy) {
+        var groupNames = [];
         var grouped = Object.create(null);
         roles.forEach(function(role) {
-            if (!grouped[role.category]) {
-                grouped[role.category] = [];
-                categories.push(role.category);
+            var groupName = role[groupBy] || (groupBy === 'priority' ? 'No priority set' : 'Other');
+            if (!grouped[groupName]) {
+                grouped[groupName] = [];
+                groupNames.push(groupName);
             }
-            grouped[role.category].push(role);
+            grouped[groupName].push(role);
         });
+        if (groupBy === 'priority') {
+            var priorityOrder = ['Very High', 'High', 'Medium', 'Low'];
+            groupNames.sort(function(a, b) {
+                var aRank = priorityOrder.indexOf(a);
+                var bRank = priorityOrder.indexOf(b);
+                if (aRank < 0) {
+                    aRank = priorityOrder.length;
+                }
+                if (bRank < 0) {
+                    bRank = priorityOrder.length;
+                }
+                return aRank - bRank;
+            });
+        }
 
         var usedIds = {};
         var fragment = document.createDocumentFragment();
-        categories.forEach(function(category, categoryIndex) {
-            var section = element('div', 'stcvr-catsec ' + categoryColors[categoryIndex % categoryColors.length]);
+        groupNames.forEach(function(groupName, groupIndex) {
+            var section = element('div', 'stcvr-catsec ' + categoryColors[groupIndex % categoryColors.length]);
             var heading = element('div', 'stcvr-cat');
             var title = element('h3', 'stcvr-cat-title');
             title.appendChild(element('span', 'stcvr-cat-dot'));
             title.firstChild.setAttribute('aria-hidden', 'true');
-            title.appendChild(document.createTextNode(category));
+            title.appendChild(document.createTextNode(groupName));
             heading.appendChild(title);
             section.appendChild(heading);
 
             var grid = element('div', 'stcvr-grid');
-            grouped[category].forEach(function(role) {
+            grouped[groupName].forEach(function(role) {
                 var baseId = 'stcvr-' + slug(role.role);
                 var id = baseId;
                 var suffix = 2;
@@ -250,7 +266,7 @@
             fragment.appendChild(section);
         });
         bands.replaceChildren(fragment);
-        return categories.length;
+        return groupNames.length;
     }
 
     function setStatus(message, isError) {
@@ -263,7 +279,6 @@
     }
 
     function setupInteractions() {
-        var cards = Array.prototype.slice.call(root.querySelectorAll('.stcvr-card'));
         var expandButton = root.querySelector('[data-stcvr-expand]');
 
         function setOpen(card, open) {
@@ -280,7 +295,7 @@
         }
 
         function anyClosed() {
-            return cards.some(function(card) {
+            return Array.prototype.some.call(root.querySelectorAll('.stcvr-card'), function(card) {
                 return !card.classList.contains('is-open');
             });
         }
@@ -291,18 +306,21 @@
             }
         }
 
-        cards.forEach(function(card) {
-            var toggle = card.querySelector('.stcvr-toggle');
-            toggle.addEventListener('click', function() {
-                setOpen(card, !card.classList.contains('is-open'));
-                syncExpand();
-            });
+        root.addEventListener('click', function(event) {
+            var toggle = event.target.closest('.stcvr-toggle');
+            if (toggle && root.contains(toggle)) {
+                var card = toggle.closest('.stcvr-card');
+                if (card) {
+                    setOpen(card, !card.classList.contains('is-open'));
+                    syncExpand();
+                }
+            }
         });
 
         if (expandButton) {
             expandButton.addEventListener('click', function() {
                 var open = anyClosed();
-                cards.forEach(function(card) {
+                Array.prototype.forEach.call(root.querySelectorAll('.stcvr-card'), function(card) {
                     setOpen(card, open);
                 });
                 syncExpand();
@@ -423,17 +441,35 @@
                     setStatus('There are no volunteer roles listed right now.', false);
                     return;
                 }
-                var categoryCount = buildRoleGroups(roles);
+                var groupBy = root.querySelector('[data-stcvr-group-by]');
+                var grouping = groupBy ? groupBy.value : 'category';
+                var groupCount = buildRoleGroups(roles, grouping);
                 var countText = root.querySelector('[data-stcvr-role-count]');
                 if (countText) {
                     countText.textContent = 'Right now ' + roles.length + ' roles are open, grouped into ' +
-                        categoryCount + ' kinds of work. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We\'ll follow up to talk it through and make sure it\'s a good fit on both sides.';
+                        groupCount + ' ' + (grouping === 'priority' ? 'priority levels' : 'kinds of work') +
+                        '. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We\'ll follow up to talk it through and make sure it\'s a good fit on both sides.';
                 }
                 if (status) {
                     status.hidden = true;
                 }
                 setupEmailLinks();
                 setupInteractions();
+                if (groupBy) {
+                    groupBy.addEventListener('change', function() {
+                        var groupCount = buildRoleGroups(roles, groupBy.value);
+                        if (countText) {
+                            countText.textContent = 'Right now ' + roles.length + ' roles are open, grouped into ' +
+                                groupCount + ' ' +
+                                (groupBy.value === 'priority' ? 'priority levels' : 'kinds of work') +
+                                '. All of them are unpaid, and there may be room for more than one person in each. If one sounds like you, email us. We\'ll follow up to talk it through and make sure it\'s a good fit on both sides.';
+                        }
+                        var expandControl = root.querySelector('[data-stcvr-expand]');
+                        if (expandControl) {
+                            expandControl.textContent = 'Open all roles';
+                        }
+                    });
+                }
             })
             .catch(function(error) {
                 console.error('Unable to load volunteer roles:', error);
