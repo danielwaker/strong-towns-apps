@@ -2,7 +2,7 @@
     'use strict';
 
     var sheetId = '1zd9E7284QgXLppdIHDb7LYYgF8gSzHkn4IkBRbgfbgk';
-    var sheetName = 'Sheet1';
+    var sheetName = 'Responses';
     var sheetUrl = 'https://docs.google.com/spreadsheets/d/' + sheetId +
         '/gviz/tq?sheet=' + encodeURIComponent(sheetName) + '&headers=1';
     var categoryColors = ['is-gold', 'is-coral', 'is-sky', 'is-navy'];
@@ -32,6 +32,17 @@
 
     function columnName(value) {
         return String(value || '').trim().toLowerCase();
+    }
+
+    function canonicalHeader(value) {
+        var name = columnName(value).replace(/\s+/g, ' ');
+        var aliases = {
+            'short description': 'role',
+            'experience desired': 'experience',
+            address: 'location',
+            organization: 'sub-header'
+        };
+        return aliases[name] || name;
     }
 
     function parseSheetDate(value) {
@@ -112,42 +123,29 @@
 
         var headers = table.cols.map(function(column) {
             var label = column.label || column.id || '';
-            var knownHeaders = ['category', 'role', 'sub-header', 'description',
-                'responsibilities', 'experience', 'commitment', 'priority', 'date', 'location',
-                'verified'];
-            var normalized = columnName(label);
-            for (var i = 0; i < knownHeaders.length; i++) {
-                if (normalized === knownHeaders[i] ||
-                    normalized.indexOf(knownHeaders[i] + ' ') === 0 ||
-                    normalized.indexOf(knownHeaders[i] + '(') === 0) {
-                    return knownHeaders[i];
-                }
-            }
-            return label;
+            return canonicalHeader(label);
         });
         var rows = table.rows;
         var firstRow = rows.length ? (rows[0].c || []).map(cellValue) : [];
-        var expectedHeaders = ['category', 'role'];
-        var firstRowIsHeader = expectedHeaders.every(function(header) {
-            return firstRow.some(function(value) {
-                return columnName(value) === header;
-            });
-        });
+        var firstRowHeaders = firstRow.map(canonicalHeader);
+        var firstRowIsHeader = firstRowHeaders.indexOf('category') >= 0 &&
+            (firstRowHeaders.indexOf('role') >= 0 || firstRowHeaders.indexOf('sub-header') >= 0);
 
         if (firstRowIsHeader) {
-            headers = firstRow;
+            headers = firstRowHeaders;
             rows = rows.slice(1);
         }
 
         var indexes = {};
         headers.forEach(function(header, index) {
-            indexes[columnName(header)] = index;
+            indexes[canonicalHeader(header)] = index;
         });
 
         if (indexes.role == null) {
-            throw new Error('The spreadsheet needs a Role column.');
+            throw new Error('The spreadsheet needs a Role or Short Description column.');
         }
 
+        var hasVerifiedColumn = indexes.verified != null;
         return rows.map(function(row) {
             var cells = row.c || [];
             var get = function(name) {
@@ -174,7 +172,7 @@
                 verified: get('verified')
             };
         }).filter(function(role) {
-            return role.role && role.verified === '\u2705';
+            return role.role && (!hasVerifiedColumn || role.verified === '\u2705');
         });
     }
 
