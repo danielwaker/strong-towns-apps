@@ -113,7 +113,8 @@
         var headers = table.cols.map(function(column) {
             var label = column.label || column.id || '';
             var knownHeaders = ['category', 'role', 'sub-header', 'description',
-                'responsibilities', 'experience', 'commitment', 'priority', 'date', 'location'];
+                'responsibilities', 'experience', 'commitment', 'priority', 'date', 'location',
+                'verified'];
             var normalized = columnName(label);
             for (var i = 0; i < knownHeaders.length; i++) {
                 if (normalized === knownHeaders[i] ||
@@ -169,10 +170,11 @@
                 commitment: get('commitment'),
                 date: dateDisplay,
                 parsedDate: parsedDate,
-                location: get('location')
+                location: get('location'),
+                verified: get('verified')
             };
         }).filter(function(role) {
-            return role.role;
+            return role.role && role.verified === '\u2705';
         });
     }
 
