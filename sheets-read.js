@@ -2,7 +2,7 @@
     'use strict';
 
     var sheetId = '1zd9E7284QgXLppdIHDb7LYYgF8gSzHkn4IkBRbgfbgk';
-    var sheetName = 'Responses';
+    var sheetName = 'LiveSheetOnTheWebsite';
     var sheetUrl = 'https://docs.google.com/spreadsheets/d/' + sheetId +
         '/gviz/tq?sheet=' + encodeURIComponent(sheetName) + '&headers=1';
     var categoryColors = ['is-gold', 'is-coral', 'is-sky', 'is-navy'];

@@ -673,6 +673,28 @@
         background: var(--stcvr-sky);
     }
 
+    #stcvr .stcvr-org-cta {
+        margin-top: 20px;
+    }
+
+    #stcvr a.stcvr-org-link {
+        display: inline-block;
+        padding: 12px 18px;
+        background: var(--stcvr-navy);
+        color: var(--stcvr-gold);
+        border: 2.5px solid var(--stcvr-navy);
+        box-shadow: 3px 3px 0 var(--stcvr-navy-mid);
+        font-family: var(--stcvr-head);
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    #stcvr a.stcvr-org-link:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--stcvr-navy-mid);
+    }
+
     #stcvr ol.stcvr-steps {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
@@ -940,40 +962,14 @@
         </div>
     </div>
 
-    <!-- ============================== WHAT HAPPENS NEXT ============================== -->
+    <!-- ============================== ORGANIZATION ROLE SUBMISSIONS ============================== -->
     <div class="stcvr-section stcvr-panel stcvr-reply" id="stcvr-reply" role="region" aria-labelledby="stcvr-reply-title">
         <h2 class="stcvr-h2" id="stcvr-reply-title">
-            <span class="stcvr-mark">Every email gets a reply</span>
+            <span class="stcvr-mark">Organizations: Submit your volunteer opportunities here!</span>
         </h2>
-        <ol class="stcvr-steps" role="list">
-            <li class="stcvr-step">
-                <span class="stcvr-step-num" aria-hidden="true">1</span>
-                <p>
-                    <strong>We read it and reply within a week.</strong>
-                </p>
-            </li>
-            <li class="stcvr-step">
-                <span class="stcvr-step-num" aria-hidden="true">2</span>
-                <p>
-                    <strong>If it looks like a match,</strong>
-                        we'll set up a quick call or coffee to talk through the role and answer your questions.
-                </p>
-            </li>
-            <li class="stcvr-step">
-                <span class="stcvr-step-num" aria-hidden="true">3</span>
-                <p>
-                    <strong>If it's not the right fit, or the role is already full,</strong>
-                        we'll let you know and suggest other ways to get involved.
-                </p>
-            </li>
-        </ol>
-        <div class="stcvr-fallback">
-            <span>
-                Button not opening your email? Write to us at 
-                <a data-stcvr-email href="#stcvr-reply">our volunteer inbox</a>
-                    and put the role name in the subject line.
-            </span>
-            <button type="button" class="stcvr-copy" data-stcvr-copy hidden>Copy address</button>
+        <p class="stcvr-sub">Represent an organization with volunteer opportunities? Submit your opportunities here to share them with the Strong Towns Chicago community.</p>
+        <div class="stcvr-org-cta">
+            <a class="stcvr-org-link" href="https://docs.google.com/forms/d/e/1FAIpQLScVnEul-w7e1IartoxWGw7xMGbwRIW72swOM9unfAZkmVYqSA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Submit a volunteer opportunity</a>
         </div>
     </div>
 
