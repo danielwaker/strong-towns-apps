@@ -39,8 +39,7 @@
         var aliases = {
             'short description': 'role',
             'experience desired': 'experience',
-            address: 'location',
-            organization: 'sub-header'
+            address: 'location'
         };
         return aliases[name] || name;
     }
@@ -161,6 +160,7 @@
                 category: get('category'),
                 priority: get('priority'),
                 region: get('region'),
+                organization: get('organization'),
                 role: get('role'),
                 subHeader: get('sub-header'),
                 description: get('description'),
@@ -236,7 +236,7 @@
         card.id = id;
 
         var heading = element('h4', 'stcvr-role', role.role);
-        appendText(heading, 'span', 'stcvr-role-sub', role.subHeader);
+        appendText(heading, 'span', 'stcvr-role-sub', role.organization || role.subHeader);
         card.appendChild(heading);
         appendText(card, 'p', 'stcvr-hook', role.description);
 
@@ -526,7 +526,8 @@
         roles.forEach(function(role) {
             var groupName = role[groupBy] || (groupBy === 'priority'
                 ? 'No priority set'
-                : groupBy === 'region' ? 'No region set' : 'Other');
+                : groupBy === 'region' ? 'No region set'
+                    : groupBy === 'organization' ? 'Strong Towns Chicago' : 'Other');
             if (!grouped[groupName]) {
                 grouped[groupName] = [];
                 groupNames.push(groupName);
@@ -805,7 +806,8 @@
                     }
                     if (count) {
                         var groupLabel = grouping === 'priority' ? 'priority levels'
-                            : grouping === 'region' ? 'regions' : 'kinds of work';
+                            : grouping === 'region' ? 'regions'
+                                : grouping === 'organization' ? 'organizations' : 'kinds of work';
                         summary += upcomingCount
                             ? '. The remaining ' + generalRoles.length + ' are grouped into ' + count + ' ' + groupLabel
                             : '. Grouped into ' + count + ' ' + groupLabel;
