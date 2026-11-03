@@ -160,6 +160,7 @@
             return {
                 category: get('category'),
                 priority: get('priority'),
+                region: get('region'),
                 role: get('role'),
                 subHeader: get('sub-header'),
                 description: get('description'),
@@ -523,7 +524,9 @@
         var groupNames = [];
         var grouped = Object.create(null);
         roles.forEach(function(role) {
-            var groupName = role[groupBy] || (groupBy === 'priority' ? 'No priority set' : 'Other');
+            var groupName = role[groupBy] || (groupBy === 'priority'
+                ? 'No priority set'
+                : groupBy === 'region' ? 'No region set' : 'Other');
             if (!grouped[groupName]) {
                 grouped[groupName] = [];
                 groupNames.push(groupName);
@@ -801,7 +804,8 @@
                         summary += ', including ' + upcomingCount + ' upcoming';
                     }
                     if (count) {
-                        var groupLabel = grouping === 'priority' ? 'priority levels' : 'kinds of work';
+                        var groupLabel = grouping === 'priority' ? 'priority levels'
+                            : grouping === 'region' ? 'regions' : 'kinds of work';
                         summary += upcomingCount
                             ? '. The remaining ' + generalRoles.length + ' are grouped into ' + count + ' ' + groupLabel
                             : '. Grouped into ' + count + ' ' + groupLabel;
